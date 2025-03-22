@@ -11,7 +11,13 @@ YouTube動画から自動字幕を取得し、チャプターごとに整形・�
 - Markdown形式で出力
 - ファイル名はYouTube動画タイトルに自動設定
 
-## インストール
+YoutubeAPIは利用しません。チャプターの情報を取るのに説明欄のテキストを利用するため、
+説明欄にチャプター情報がない場合はチャプターが一つとしてある買われます。
+
+## 動作環境
+
+開発はPython 3.13.0 / Windows 11 で行っています。
+仮想環境を作成し、以下のコマンドでモジュールをインストールしてください。
 
 ```bash
 pip install -r requirements.txt
@@ -79,5 +85,6 @@ $env:OPENAI_API_KEY="sk-xxxxxxxxxxxxxxxxxxxx"
 
 ## ライセンス
 
-[LICENSE](LICENSE)
+MIT License です。
+
 
