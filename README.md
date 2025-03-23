@@ -43,7 +43,10 @@ python src/main.py URL [-o 出力先ディレクトリ] [-l 言語コード] [--
 python src/main.py "https://www.youtube.com/watch?v=xxxx"
 
 # 要約あり、Markdownを指定ディレクトリに保存
-python src/main.py "https://www.youtube.com/watch?v=xxxx" -o out --summarize
+python src/main.py "https://www.youtube.com/watch?v=xxxx" -o out -sm
+
+# 実例 Blender4.4 リリース告知動画
+python src/main.py "https://www.youtube.com/watch?v=-eqPs-boihU" -l en -o out -sm
 ```
 
 ## 注意点：長時間動画の要約について

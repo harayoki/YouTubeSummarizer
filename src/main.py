@@ -229,6 +229,8 @@ def main():
         if args.output_dir:
             title = get_video_title(args.url)
             filename = resolve_output_path(args.output_dir, title)
+            header = f"# {title}]\n[{args.url}]({args.url})\n\n"
+            md_text = header + md_text
             with open(filename, 'w', encoding='utf-8') as f:
                 f.write(md_text)
             print(f"保存しました: {filename}")
