@@ -177,10 +177,12 @@ def render_chaptered_transcript_md(grouped_chapters, do_summarize=False):
         })
 
     if do_summarize:
+        lines2 = []
         summary_text = summarize_chapters_bulk(full_chapters)
-        lines.append("\n---\n")
-        lines.append("## 要約（チャプターごと）")
-        lines.append(summary_text)
+        lines2.append("## 要約（チャプターごと）")
+        lines2.append(summary_text)
+        lines2.append("\n---\n")
+        lines = lines2 + lines
 
     return "\n".join(lines)
 
