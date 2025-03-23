@@ -37,16 +37,22 @@ def parse_chapters(video_url):
 
         desc_match = re.search(r'"shortDescription":"(.*?)"', html, re.DOTALL)
         if desc_match:
-            description = desc_match.group(1).encode('utf-8').decode('unicode_escape')
+            description = desc_match.group(1)
+            # description  = description.r.encode('utf-8')
+            # description = description.decode('unicode_escape')
         else:
             description = ''
     except Exception as e:
         print(f"チャプター取得失敗（HTML取得エラー）: {e}")
         return [{"start": 0, "title": "全体"}, {"start": float("inf"), "title": "END"}]
 
-    pattern = re.compile(r"(?P<time>\d{1,2}:\d{2}(?::\d{2})?)\s+(?P<title>.+)")
+    pattern = re.compile(
+        r"(?P<time>\d{1,2}:\d{2}(?::\d{2})?)\s+(?P<title>.+?)\\n"
+    )
     chapters = []
+    index = -1
     for match in pattern.finditer(description):
+        index += 1
         time_str = match.group("time")
         title = match.group("title").strip()
         parts = list(map(int, time_str.split(":")))
@@ -82,7 +88,7 @@ def resolve_language_preference(args_langs, transcript_list):
 def fetch_transcript(video_url, languages):
     video_id = get_video_id(video_url)
     if not video_id:
-        raise ValueError("無効なURLです")
+        raise ValueError(f"無効なURLです : {video_url}")
 
     try:
         transcript_list = YouTubeTranscriptApi.list_transcripts(video_id)
